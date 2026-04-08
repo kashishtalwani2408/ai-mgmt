@@ -28,11 +28,45 @@
 - PRD.md is the single source of truth for requirements
 - If it can't be handed over through GitHub markdown alone, it's incomplete
 
+## Repo Structure
+Multi-client repo. Global files at root, each client in its own folder.
+
+```
+/
+├── CLAUDE.md
+├── SECURITY.md
+├── Personal/              ← personal projects
+├── Misc/                  ← miscellaneous
+├── Clients/
+│   ├── Veha/              ← per-client (HEARTBEAT.md, PRD.md, app code)
+│   ├── CRISIL/
+│   ├── ATMA/
+│   └── Landmark/
+```
+
+- **Global level (root):** CLAUDE.md, SECURITY.md, shared rules
+- **Client level (Clients/\<name\>/):** HEARTBEAT.md, PRD.md, client app code, client-specific config
+- **Personal/Misc:** Non-client work
+
+## Superpowers Integration
+Superpowers plugin is installed. Use these skills at the right phase:
+- **Planning (Phases 0-1):** `superpowers:brainstorming` before any creative/feature work, `superpowers:writing-plans` for multi-step tasks
+- **Execution (Phases 3-5):** `superpowers:executing-plans`, `superpowers:subagent-driven-development`, `superpowers:dispatching-parallel-agents`
+- **Testing (Phase 6):** `superpowers:test-driven-development`, `superpowers:systematic-debugging`
+- **Review (Phase 7-8):** `superpowers:requesting-code-review`, `superpowers:verification-before-completion`
+- **Git:** `superpowers:using-git-worktrees` for feature isolation, `superpowers:finishing-a-development-branch` for merge/PR
+
 ## Memory Layer (Required Files)
-- `CLAUDE.md` — project brain (this file)
-- `SECURITY.md` — safety guardrails
-- `HEARTBEAT.md` — daily handoff log (created per project)
-- `PRD.md` — full requirements (created per project)
+- `CLAUDE.md` — project brain, global (this file)
+- `SECURITY.md` — safety guardrails, global
+- `Clients/<name>/HEARTBEAT.md` — daily handoff log, per client
+- `Clients/<name>/PRD.md` — full requirements, per client
+
+## Environment
+- Git + GitHub CLI (gh) — version control, PRs, issues
+- Claude Code CLI — primary AI execution tool
+- Playwright — E2E testing (plugin installed)
+- Frappe bench — when working on client Frappe apps
 
 ## Hard Rules
 - Never rename Select option values via Property Setter — use Translation records
@@ -44,4 +78,4 @@
 
 ## Session Log
 <!-- Update this after each working session -->
-- 2026-04-08: Initial setup — CLAUDE.md, SECURITY.md created. Builder Protocol adopted. Ready for first project.
+- 2026-04-08: Initial setup — CLAUDE.md, SECURITY.md created. Builder Protocol adopted. Repo structured: Personal, Misc, Clients (Veha, CRISIL, ATMA, Landmark). Superpowers integrated.
